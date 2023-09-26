@@ -1,14 +1,14 @@
 ---
 id: middleware
 title: Middleware
-description: 'History and Design > Middleware: How middleware enable adding additional capabilities to the Redux store'
+description: 'History and Design > Middleware: How middleware enables adding additional capabilities to the Redux store
 ---
 
 # Middleware
 
 You've seen middleware in action in the ["Redux Fundamentals" tutorial](../../tutorials/fundamentals/part-4-store.md#middleware). If you've used server-side libraries like [Express](https://expressjs.com/) and [Koa](https://koajs.com/), you were also probably already familiar with the concept of _middleware_. In these frameworks, middleware is some code you can put between the framework receiving a request, and the framework generating a response. For example, Express or Koa middleware may add CORS headers, logging, compression, and more. The best feature of middleware is that it's composable in a chain. You can use multiple independent third-party middleware in a single project.
 
-Redux middleware solves different problems than Express or Koa middleware, but in a conceptually similar way. **It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.** People use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, and more.
+Redux middleware solves different problems than Express or Koa middleware but in a conceptually similar way. **It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.** People use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, and more.
 
 This article is divided into an in-depth intro to help you grok the concept, and [a few practical examples](#seven-examples) to show the power of middleware at the very end. You may find it helpful to switch back and forth between them, as you flip between feeling bored and inspired.
 
@@ -28,7 +28,7 @@ How do we approach this with Redux?
 
 ### Attempt #1: Logging Manually
 
-The most naïve solution is just to log the action and the next state yourself every time you call [`store.dispatch(action)`](../../api/Store.md#dispatchaction). It's not really a solution, but just a first step towards understanding the problem.
+The most naïve solution is just to log the action and the next state yourself every time you call [`store. dispatch(action)`](../../api/Store.md#dispatchaction). It's not really a solution, but just a first step towards understanding the problem.
 
 > ##### Note
 >
@@ -36,13 +36,13 @@ The most naïve solution is just to log the action and the next state yourself e
 
 Say, you call this when creating a todo:
 
-```js
+``` js
 store.dispatch(addTodo('Use Redux'))
 ```
 
 To log the action and state, you can change it to something like this:
 
-```js
+``` js
 const action = addTodo('Use Redux')
 
 console.log('dispatching', action)
@@ -64,9 +64,9 @@ function dispatchAndLog(store, action) {
 }
 ```
 
-You can then use it everywhere instead of `store.dispatch()`:
+You can then use it everywhere instead of `store. dispatch()`:
 
-```js
+``` js
 dispatchAndLog(store, addTodo('Use Redux'))
 ```
 
